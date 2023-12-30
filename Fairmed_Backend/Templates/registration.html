@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FairMED: Registration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      input[type="radio"] {
+        margin-right: 5px;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      input[type="submit"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Register as:</h1>
+      <form action="/register/patient/" method="post">
+        {% csrf_token %} {{ message }} <br />
+        <input type="radio" value="Patient" name="reg" checked />
+        <label for="patient">Patient</label>
+        <input type="radio" value="Physician" name="reg" />
+        <label for="physician">Physician</label>
+        <br /><br />
+        {{ form.as_p }}
+        <br /><br />
+        <input type="submit" value="Register" />
+      </form>
+    </div>
+  </body>
+</html>

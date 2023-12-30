@@ -1,0 +1,8 @@
+<h1>Login:</h1>
+{% if message %}
+<h2>{{ message }}</h2>
+{% endif %}
+<form action="/login/patient/" method="post">
+  {% csrf_token %} {{ form.as_p }}
+  <input type="submit" />
+</form>
