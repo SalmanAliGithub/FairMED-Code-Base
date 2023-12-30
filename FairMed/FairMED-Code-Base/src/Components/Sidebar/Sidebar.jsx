@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Sidebar.css';
 
+function LogoutConfirmationPopup({ onCancel, onLogout }) {
+  return (
+    <div className="popup">
+      <p>Are you sure you want to log out?</p>
+      <div className="popup-buttons">
+        <button onClick={onCancel}>Cancel</button>
+        <button onClick={onLogout}>OK</button>
+      </div>
+    </div>
+  );
+}
+
 function Sidebar() {
-    const handleLogoutClick = () => {
-        if (window.confirm('Are you sure you want to logout?')) {
-          window.location.href = '/home'; 
-        }
-      };
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleLogoutClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCancelLogout = () => {
+    setShowConfirmation(false);
+  };
+
+  const handleConfirmLogout = () => {
+    window.location.href = '/home'; 
+  };
+
   return (
     <div>
-           <div className="sidebar">
+      <div className="sidebar">
         <header>FAIRMED</header>
         <ul>
           <li>
@@ -38,12 +59,19 @@ function Sidebar() {
           </li>
         </ul>
         <button className="logout_button" onClick={handleLogoutClick}>
-          <a href="/patient-dashboard">Logout</a>
+          Logout
         </button>
       </div>
+      {showConfirmation && (
+        <div className="popup-container">
+          <LogoutConfirmationPopup
+            onCancel={handleCancelLogout}
+            onLogout={handleConfirmLogout}
+          />
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Sidebar
-
+export default Sidebar;
