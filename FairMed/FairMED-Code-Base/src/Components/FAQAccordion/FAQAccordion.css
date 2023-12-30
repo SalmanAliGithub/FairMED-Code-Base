@@ -1,0 +1,10 @@
+.FAQ-QA{
+    display:flex;
+    flex-direction: row;
+    gap:150px;
+    padding:50px;
+}
+.FAQ-QA div{
+    background-color:rgba(240, 248, 255, 0.717);
+    padding:7px
+}

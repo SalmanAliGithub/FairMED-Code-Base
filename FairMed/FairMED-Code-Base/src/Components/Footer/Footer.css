@@ -1,0 +1,37 @@
+footer{
+    padding: 10px 10%;
+    margin-top: auto;
+    background-color: rgb(39, 58, 94);
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+  footer ul li {
+    list-style: none;
+    padding: 5px;
+  
+  }
+  
+  footer a{
+    color: aliceblue;
+  }
+  
+  footer h3{
+    color: rgb(207, 255, 48);
+    margin-bottom: 5px;
+  }
+  .footer-nav , .socilas {
+    width: 50%;
+  }
+  
+  footer i {
+    font-size: larger;
+  }
+  
+  footer a:hover {
+    background-color: aliceblue;
+    color:rgb(39, 58, 94) ;
+    padding: 3px;
+    border-radius: 6px;
+  }

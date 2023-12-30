@@ -411,3 +411,225 @@ figcaption {
     width: 40%!important;
   }
 }
+/* **************************************** Home *************************************** */
+.homeMain{
+  background-color: aliceblue;
+}
+#backphoto{
+  background-image: url("../Components/Assets/fairmed.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  color:aliceblue;
+}
+#backphoto h1 {
+  margin-top: 0;
+  font-size: 100px;
+  color:white;
+}
+
+.homerating {
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
+
+#flow {
+  margin-right: 20px;
+  width:30%;
+  font-size: larger;
+  font-weight: bold;
+  color:darkblue;
+  text-decoration:underline;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 1px solid rgb(39, 58, 94);
+  background-color:rgb(40, 89, 180);
+  color:white;
+  margin-right: 20px;
+  text-align: center;
+  opacity:0.8;
+}
+.circle:hover{
+  border:10px solid rgba(0, 0, 255, 0.626);
+  opacity: 1;
+}
+.circle a {
+  text-decoration: none;
+  color:white;
+}
+
+#homeSignup{
+  border: 2px solid rgba(255, 192, 203, 0.632);
+  padding:10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  text-align: center;
+  width:100px;
+  background-color:gold;
+  color:black;
+  margin-bottom: 10px;
+  text-decoration: none;
+  }
+#homeSignup:hover{
+  opacity:0.8;
+}
+#homearticle{
+  display: flex;
+  overflow-x: scroll; 
+  scroll-snap-type: x mandatory; 
+  align-items: center;
+  padding:30px;
+  margin-left: 20px;
+  background-color:black;
+}
+.scroll{
+  flex: 0 0 auto;
+  padding: 10px;
+  margin-right: 10px;
+  width:fit-content;
+  height:fit-content;
+  font-size: 20px;
+  border: 3px dotted black;
+  font-family:Arial, Helvetica, sans-serif;
+  background-color: black;
+  color:white;
+  text-align: center;
+}
+.scroll:hover{
+  opacity:0.8;
+}
+
+  .signups a{
+  text-decoration: underline;
+  color:black;
+}
+.signups a:hover{
+  font-size:large;
+}
+.signups{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 50px;
+ }
+ .description{
+  border:1px solid black;
+  margin-top: 30px;
+  padding:30px;
+  margin:30px;
+  font-size: 20px;
+  background-color: rgb(41, 68, 118);
+  color:white;
+}
+.description h3{
+  border: 2px solid black;
+  width:fit-content;
+  padding:10px;
+  background-color:rgb(39, 58, 94);
+  color:white;
+  border-radius: 20px;
+}
+.homeMain table{
+  width:100%;
+  height:80px;
+  border: 2px solid black;
+  text-align: center;
+  background-color:rgb(85, 130, 169);
+  font-size: larger;
+  margin-top: 1px;
+  color:rgb(207, 255, 48);
+  }
+.homeMain td,th{
+  border-right: 2px solid black;
+  font-size: larger;
+}
+.homeMain th:hover{
+background-color:rgba(207, 255, 48, 0.687);
+color:black;
+}
+.article{
+  text-align: center;
+  font-size: 30px;
+}
+
+.description h3{
+  font-size: larger;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 500;
+}
+/* **********************************   DASHBOARD ************************************* */
+.con{
+  display:flex;
+  justify-content: space-between;
+}
+
+.patientDashboard{
+  height:100%;
+  background-color: aliceblue;
+}
+
+.patientDashboard div{
+  margin: 20px;
+}
+
+.greetings{
+  margin-bottom: 50px;
+  margin-top: 30px;
+
+}
+.recent {
+  height:50%;
+  background-color: #DAE1DE;
+  margin-bottom:20px;
+
+}
+.recent div{
+  height:85%;
+  overflow-y: auto;
+
+}
+.recent h2{
+  background-color:#B0BFB3 ;
+  padding:10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+/* **********************************   Medical Records ************************************* */
+.medicalrecord{
+  display: flex;
+  flex-direction: column;
+}
+.mymedicalrecord h1{
+  text-align: center;
+  background-color: #00274F;
+  color:white;
+  position: sticky;
+  
+}
+
+.mymedicalrecord {
+  height:300px;
+  background-color: aliceblue;
+  margin-left:30%;
+  margin-right: 30px;
+  overflow-y: auto;
+  margin-top: 100px;
+
+}
+

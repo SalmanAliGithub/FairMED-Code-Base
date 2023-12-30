@@ -8,14 +8,26 @@ function PatientDashboard() {
        <div className="bg-black ">
         <Sidebar />
        </div>
-       <div>
-        <h1>HIw</h1>
-       </div>
+       <div className='patientDashboard'>
+        <div className='greetings'>
+          <h1>Hello, </h1>
+        </div>
+        <div className='recent'>
+          <h2>My Recent Activity:</h2>
+          <div>
+            
+          </div>
+        </div>
+        <div className='recent'>
+          <h2>Recent Medical Record Updates:</h2>
+          <div>
 
-       <div>
+          </div>
+        </div>
+       </div>
+       <div className='profile'>
         <Profile />
        </div>
-    
    </div>
   )
 }

@@ -7,7 +7,9 @@ import Login from './Pages/Login';
 import SignUp from './Pages/SignUp'
 import './App.css';
 import PatientDashboard from './Pages/PatientDashboard';
-
+import FAQ from './Pages/FAQ';
+import Rateandreview from './Pages/Rateandreview';
+import Medicalrecord from './Pages/Medicalrecord';
 
 
 
@@ -25,6 +27,9 @@ function App() {
           <Route path="*" element={<NoPage />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/patient-dashboard" element={<PatientDashboard />}></Route>
+          <Route path="/FAQ" element={<FAQ />}></Route>
+          <Route path="/rate-review" element={<Rateandreview />}></Route>
+          <Route path="/medicalrecord" element={<Medicalrecord />}></Route>
         </Routes>
       </BrowserRouter>
   

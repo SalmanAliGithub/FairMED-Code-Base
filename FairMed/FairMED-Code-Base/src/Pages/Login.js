@@ -50,7 +50,7 @@ function Login() {
                         <label htmlFor="floatingPassword">Password</label>
                       </div>
                       <div className="d-grid">
-                        <a className="btn btn-lg btn-success btn-login text-uppercase fw-bold mb-2">
+                        <a className="btn btn-lg btn-success btn-login text-uppercase fw-bold mb-2" href='/patient-dashboard'>
                           Log In
                         </a>
                         <div className="text-center">
