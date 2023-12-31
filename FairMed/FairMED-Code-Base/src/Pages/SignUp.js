@@ -5,6 +5,7 @@ import {useState} from 'react';
 function SignUp() {
     const [usePhoneNumber, setUsePhoneNumber] = useState(false);
     const [emailOrPhoneNumber, setEmailOrPhoneNumber] = useState('');
+    const [activeButton, setActiveButton] = useState('patient');
 
     const handleUsePhoneNumberClick = () => {
         setUsePhoneNumber(true);
@@ -19,10 +20,12 @@ function SignUp() {
 
     const handleDoctorClick = () => {
       setIsDoctor(true);
+      setActiveButton('doctor');
     };
 
     const handlePatientClick = () => {
         setIsDoctor(false);
+        setActiveButton('patient');
       };
 
       const [formData, setFormData] = useState({
@@ -31,7 +34,8 @@ function SignUp() {
         email: '',
         phoneNumber: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        uploadFile:''
       });
       
       const [errors, setErrors] = useState({});
@@ -50,16 +54,30 @@ function SignUp() {
       
         if (!formData.firstName.trim()) {
           validationErrors.firstName = 'First name is required';
+        } else if (/\d/.test(formData.firstName)) {
+          validationErrors.firstName = 'First name should not contain numbers';
+        } else if (/[!@#$%^&*(),.?":{}|<>]/.test(formData.firstName)) {
+          validationErrors.firstName = 'First name should not contain special characters';
         }
-      
+        
         if (!formData.lastName.trim()) {
           validationErrors.lastName = 'Last name is required';
+        } else if (/\d/.test(formData.lastName)) {
+          validationErrors.lastName = 'Last name should not contain numbers';
+        } else if (/[!@#$%^&*(),.?":{}|<>]/.test(formData.lastName)) {
+          validationErrors.lastName = 'Last name should not contain special characters';
         }
       
         if (!formData.email.trim()) {
           validationErrors.email = 'Email is required';
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
           validationErrors.email = 'Email is not valid';
+        }
+
+        if (!formData.phoneNumber.trim()) {
+          validationErrors.phoneNumber = 'Phone number is required';
+        } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
+          validationErrors.phoneNumber = 'Phone number must have 10 digits';
         }
       
         if (!formData.password.trim()) {
@@ -71,6 +89,9 @@ function SignUp() {
         if (formData.confirmPassword !== formData.password) {
           validationErrors.confirmPassword = 'Passwords do not match';
         }
+        if (!formData.uploadFile) {
+          validationErrors.uploadFile = 'Please upload a file';
+        }
       
         setErrors(validationErrors);
       };
@@ -80,17 +101,17 @@ function SignUp() {
     <div className="container-fluid ps-md-0">
       <div className="row g-0">
         <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image" />
-        <div className="col-md-8 col-lg-6">
-          <div className="login d-flex align-items-center py-5">
+        <div className="signup-container col-md-8 col-lg-6">
+          <div className="signup d-flex align-items-center py-5">
             <div className="container">
               <div className="row">
                 <div className="col-md-9 col-lg-8 mx-auto">
-                  <h3 className="login-heading mb-4">Sign Up as</h3>
+                  <h3 className="signup-heading mb-4 text-white">Sign Up as</h3>
                   <div className="mb-4 d-flex gap-2">
-                    <button className="btn btn-lg btn-primary btn-login text-uppercase fw-bold" type="button" onClick={handlePatientClick}>
+                    <button className={`btn btn-lg btn-primary btn-login text-uppercase fw-bold ${activeButton === 'patient' ? 'active' : ''}`} type="button" onClick={handlePatientClick}>
                     Patient
                     </button>
-                    <button className="btn btn-lg btn-primary btn-login text-uppercase fw-bold" type="button"  onClick={handleDoctorClick}>
+                    <button className={`btn btn-lg btn-primary btn-login text-uppercase fw-bold ${activeButton === 'doctor' ? 'active' : ''}`} type="button"  onClick={handleDoctorClick}>
                     Doctor
                     </button>
                   </div>
@@ -132,20 +153,20 @@ function SignUp() {
                     {!usePhoneNumber ? (
                       <div className="form-floating mb-3">
                         <input
-                          type="email"
-                          name='email'
-                          className="form-control"
-                          id="floatingInput"
-                          placeholder="name@example.com"
-                          value={emailOrPhoneNumber}
-                          onChange={handleInputChange}
-                        />
+                            type="email"
+                            name="email"
+                            className="form-control"
+                            id="floatingInput"
+                            placeholder="name@example.com"
+                            value={formData.email}
+                            onChange={handleChange}
+                          />
                         <label htmlFor="floatingInput">Email address</label>
                         {errors.email && <span className="text-danger">{errors.email}</span>}
                         <div className="text-center mt-2">
                           <a
                             href="#"
-                            className="text-decoration-none"
+                            className="text-white"
                             onClick={handleUsePhoneNumberClick}
                           >
                             Use Phone Number Instead
@@ -155,19 +176,20 @@ function SignUp() {
                     ) : (
                       <div className="form-floating mb-3">
                         <input
-                          type="tel"
-                          name='phoneNumber'
+                          type="text"
+                          name="phoneNumber"
                           className="form-control"
-                          id="floatingPhoneNumber"
+                          id="floatingInput"
                           placeholder="Phone number"
-                          value={emailOrPhoneNumber}
-                          onChange={handleInputChange}
+                          value={formData.phoneNumber}
+                          onChange={handleChange}
                         />
                         <label htmlFor="floatingPhoneNumber">Phone number</label>
+                        {errors.phoneNumber && <span className="text-danger">{errors.phoneNumber}</span>}
                         <div className="text-center mt-2">
                           <a
                             href="#"
-                            className="text-decoration-none"
+                            className="text-white"
                             onClick={() => setUsePhoneNumber(false)}
                           >
                             Use Email Address Instead
@@ -211,26 +233,28 @@ function SignUp() {
                     </div>
                     {isDoctor && (
                       <div className=" mb-3">
-                         <label htmlFor="uploadLicense" className="form-label">Upload License</label>
+                         <label htmlFor="uploadLicense" className="form-label text-white">Upload License</label>
                         <input
                           type="file"
                           className="form-control"
                           id="uploadLicense"
                           placeholder="Upload License"
+                          onChange={handleChange}
                         />
+                        {errors.uploadFile && <span className="text-danger">{errors.uploadFile}</span>}
                        
                       </div>
                     )}
 
                     <div className="d-grid">
                       <button
-                        className="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2"
+                        className="btn btn-lg btn-primary btn-signup text-uppercase fw-bold mb-2"
                         type="submit"
                       >
                         Sign up
                       </button>
-                      <div id="emailHelp" className="form-text text-center mt-4 text-dark">Already have an account? 
-                        <a href="/login" className="fw-bold text-decoration-none"> Log In</a>
+                      <div id="emailHelp" className="form-text text-center mt-4 text-white">Already have an account? 
+                        <a href="/login" className="fw-bold text-decoration-none text-info"> Log In</a>
                       </div>
                     </div>
                   </form>

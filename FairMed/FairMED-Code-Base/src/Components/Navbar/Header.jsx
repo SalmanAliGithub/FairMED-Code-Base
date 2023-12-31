@@ -37,7 +37,6 @@ function Header(props){
                     </nav>
                     <div className="registration">
                         <a href="/login" className="signin btn btn-success" onClick={() => {setOpenModal(true);}}>
-                        <i className="ri-user-line" />
                         Log In
                         </a>
                         <a href="/signup" className="btn btn-primary" >Signup</a>
