@@ -3,9 +3,25 @@ import './Footer.css'
 
 function Footer() {
   return (
+    
     <div>
+      
       <footer>
-  <div className="footer-nav">
+      <div className="column left">
+   <div> 
+    <ul className='About'>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="/FAQ">FAQ</a>
+      </li>
+
+    </ul>
+    </div>
+</div>
+<div className="column middle">
+<div className="footer-nav">
         <div className="card p-3 p-md-4 text-white">
           <h6 className="my-3">Advertise your healthcare on our site</h6>
           <div className="row d-flex my-2 pr-2 pr-md-5 div1">
@@ -22,19 +38,15 @@ function Footer() {
             </div>
         </div>
 </div>
-
-    <ul>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="/FAQ">FAQ</a>
-      </li>
-
-    </ul>
   </div>
- <div>
+  <div className='rights'>
+  <p>created by Us <br /> @copyrights Fairmed</p>
+ </div>
+</div>
+<div className="column right">
+<div>
   <div className="socials">
+    <h3 className='para'>Follow us on</h3>
     <ul className='d-flex text-decoration-none fs-2 gap-5 '>
       <li>
         <a href="#">
@@ -54,8 +66,14 @@ function Footer() {
     </ul>
   </div>
  </div>
+</div>
+
+
+ <div className='description'></div>
 </footer>
+
     </div>
+    
   )
 }
 
