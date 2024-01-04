@@ -9,4 +9,6 @@ while True:
     while (arduinoData.inWaiting()==0):
         pass
     data = arduinoData.readline()
+    data = str(data,'utf-8')
+    data = data.strip('\r\n')
     print(data)
