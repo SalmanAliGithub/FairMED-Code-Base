@@ -1,0 +1,155 @@
+.navbar-header {
+  list-style-type: none;
+  background-color: aliceblue;
+  position: fixed;
+  width: 80%;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 6%;
+  transition: all 0.5s ease;
+  margin: 3vw;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.header-nav a {
+  color: black;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo i {
+  color: cadetblue;
+  font-size: 28px;
+  margin-right: 3px;
+}
+
+.logo span {
+  color: black;
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.navlogo {
+  height: 50px;
+}
+
+.navbar {
+  display: flex;
+}
+
+.navbar a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 5px 0;
+  margin: 0px 30px;
+  transition: all 0.5s ease;
+}
+
+.navbar a:hover {
+  color: rgb(0, 106, 255);
+}
+
+.navbar a.active {
+  color: rgb(0, 106, 255);
+}
+
+.registration {
+  display: flex;
+  align-items: center;
+}
+
+.registration a {
+  margin-right: 25px;
+  margin-left: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}
+
+.signin {
+  display: flex;
+  align-items: center;
+}
+
+.signin i {
+  color: cadetblue;
+  font-size: 28px;
+  margin-right: 7px;
+}
+
+.registration a:hover {
+  color: rgb(0, 106, 255);
+}
+
+#menu-icon {
+  font-size: 35px;
+  color: cadetblue;
+  cursor: pointer;
+  z-index: 10001;
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .navbar-header {
+    padding: 14px 2%;
+    transition: 0.2s;
+  }
+
+  .navbar a {
+    padding: 5px 0;
+    margin: 0px 20px;
+  }
+}
+
+@media (max-width: 1090px) {
+  #menu-icon {
+    display: block;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 270px;
+    height: 38vh;
+    background-color: cadetblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+  }
+
+  .navbar a {
+    display: block;
+    margin: 12px 0;
+    padding: 0px 25px;
+    transition: all 0.5s ease;
+  }
+
+  .navbar a:hover {
+    color: darkblue;
+    transform: translateY(5px);
+  }
+
+  .navbar a.active {
+    color: darkblue;
+  }
+
+  .navbar.open {
+    right: 2%;
+  }
+}
