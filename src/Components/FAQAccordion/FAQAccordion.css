@@ -1,0 +1,44 @@
+.FAQ-QA {
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+    padding: 50px;
+  }
+  
+  .FAQ-QA div {
+    background-color: #00274F;
+    color: white;
+    width: 500px;
+
+  }
+
+  
+  .FAQ-QA .faq-answer {
+    display: none;
+    padding: 10px;
+  }
+  
+  .FAQ-QA .faq-answer-active {
+    display: block;
+    background-color: aliceblue;
+    color: black;
+  }
+  .faq-question {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    padding:10px;
+
+  }
+  
+.faq-divider {
+    border: none;
+    border-top: 3px solid aliceblue;
+    margin: 10px 0;
+  }
+  .faq-question:hover{
+    background-color: aliceblue;
+    color: black;
+    padding:15px;
+  }
