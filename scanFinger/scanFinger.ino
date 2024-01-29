@@ -75,6 +75,10 @@ void setup()
 
 void loop()                     // run over and over again
 {
+  while (Serial.available()==0){
+
+  }
+
   getFingerprintID();
   delay(50);            //don't ned to run this at full speed.
 }
