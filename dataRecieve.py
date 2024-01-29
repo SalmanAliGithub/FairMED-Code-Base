@@ -39,16 +39,23 @@ time.sleep(1)
 
 #send command to arduino
 while True:
-    # cmd = "fetchUser"
-    # cmd = cmd +'\r'
-    # arduinoData.write(cmd.encode())
+    # Sending data from py to arduino
+    if recievedCmd == "fetchUser": #string that is gonna be recieved for the backend when requesting user Id by scanning finger
+        recievedCmd = recievedCmd +'\r'
+        arduinoData.write(recievedCmd.encode())
 
-    while (arduinoData.inWaiting()==0):
-        pass
-    data = arduinoData.readline()
-    data = str(data,'utf-8')
-    data = data.strip('\r\n')
-    print(data)
+        while (arduinoData.inWaiting()==0):
+            pass
+        data = arduinoData.readline()
+        data = str(data,'utf-8')
+        data = data.strip('\r\n')
+        print(data)
+
+
+    if recievedCmd == "register":
+        registeer = recievedCmd + '\r'
+        arduinoData.write(recievedCmd.encode())
+
 
     endPoint = "http://10.6.156.26:8000/login/api/token/"
     request = requests.post(endPoint, json={"data":data})
