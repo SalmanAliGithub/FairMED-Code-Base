@@ -1132,8 +1132,11 @@ h5 {
 
 
 /**************************************view doctor dashboard***************/
-.rate-box{
-  margin-left: 5%;
+.view-doctor-dashboard-content {
+  padding:20px ;
+  background-color: aliceblue;
+  padding-left:70px ;
+
 }
 
 .rating { 
@@ -1235,3 +1238,86 @@ text-transform: uppercase;
  .rate-box .btn:hover {
      background-color: #D32F2F !important
  }
+
+ .review-number {
+  float: left;
+  width: 35px;
+  line-height: 1;
+}
+
+.review-number div {
+  height: 9px;
+  margin: 5px 0
+}
+
+.review-progress {
+  float: left;
+  width: 230px;
+}
+
+.review-progress .progress {
+  margin: 8px 0;
+}
+
+.progress-number {
+  margin-left: 10px;
+  float: left;
+}
+
+.rating-block,
+.review-block {
+  background-color: #fff;
+  border: 1px solid #e1e6ef;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.review-block {
+  margin-bottom: 20px;
+}
+
+.review-block-img img {
+  height: 60px;
+  width: 60px;
+}
+
+.review-block-name {
+  font-size: 12px;
+  margin: 10px 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.review-block-name a {
+  color: #374767;
+}
+
+.review-block-date {
+  font-size: 12px;
+}
+
+.review-block-rate {
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.review-block-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.review-block-description {
+  font-size: 13px;
+}
+
+
+.contact-info{
+  margin-left: 4%;
+}
+
+.top{
+gap:40%;
+}
