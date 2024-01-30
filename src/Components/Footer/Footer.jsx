@@ -3,59 +3,111 @@ import './Footer.css'
 
 function Footer() {
   return (
-    <div>
-      <footer>
-  <div className="footer-nav">
-        <div className="card p-3 p-md-4 text-white">
-          <h6 className="my-3">Advertise your healthcare on our site</h6>
-          <div className="row d-flex my-2 pr-2 pr-md-5 div1">
-            <div className="col-9">
-              <input
-                type="email"
-                className="form-control py-3"
-                id="inp1"
-                placeholder="Enter email address"
-              />
-            </div>
-            <div className="col-3 px-0">
-              <button className="btn btn-info text-white px-4 py-2"> OK </button>
-            </div>
+//     <div>
+//       <footer>
+//   <div className="footer-nav">
+//         <div className="card p-3 p-md-4 text-white">
+//           <h6 className="my-3">Advertise your Healthcare</h6>
+//           <div className="row d-flex my-2 pr-2 pr-md-5 div1">
+//             <div className="col-9">
+//               <input
+//                 type="email"
+//                 className="form-control py-3"
+//                 id="inp1"
+//                 placeholder="Enter email address"
+//               />
+//             </div>
+//             <div className="col-3 px-0">
+//               <button className="btn btn-info text-white px-4 py-2"> OK </button>
+//             </div>
+//         </div>
+// </div>
+
+//     <ul>
+//       <li>
+//         <a href="#">About</a>
+//       </li>
+//       <li>
+//         <a href="/FAQ">FAQ</a>
+//       </li>
+
+//     </ul>
+//   </div>
+//  <div>
+//   <div className="socials">
+//     <ul className='d-flex text-decoration-none fs-2 gap-5 '>
+//       <li>
+//         <a href="#">
+//           <i className="ri-facebook-box-fill" />
+//         </a>
+//       </li>
+//       <li>
+//         <a href="#">
+//           <i className="ri-instagram-line" /> 
+//         </a>
+//       </li>
+//       <li>
+//         <a href="mailto:fairmed@gmail.com">
+//           <i className="ri-mail-line" />
+//         </a>
+//       </li>
+//     </ul>
+//   </div>
+//  </div>
+// </footer>
+//     </div>
+<div>
+  <footer className='d-flex flex-column'>
+    <div className='footer-nav'>
+      <div className='d-flex flex-column gap-1'>
+        <div className='text-white'>
+          <h6>Advertise your Healthcare</h6>
         </div>
-</div>
-
-    <ul>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="/FAQ">FAQ</a>
-      </li>
-
-    </ul>
-  </div>
- <div>
-  <div className="socials">
-    <ul className='d-flex text-decoration-none fs-2 gap-5 '>
-      <li>
-        <a href="#">
-          <i className="ri-facebook-box-fill" />
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i className="ri-instagram-line" /> 
-        </a>
-      </li>
-      <li>
-        <a href="mailto:fairmed@gmail.com">
-          <i className="ri-mail-line" />
-        </a>
-      </li>
-    </ul>
-  </div>
- </div>
-</footer>
+        <div className='footer-email'>
+          <div>
+            <input
+                type="email"
+               className="form-control py-3"
+                id="inp1"
+               placeholder="Enter email address"
+            />
+          </div>
+          <div>
+            <button className="btn btn-info text-white px-4 py-2"> OK </button>
+          </div>
+        </div>
+      </div>
+      <div className='d-flex'>
+        <div class="vertical-line"></div>
+        <ul>
+          <li>Information</li>
+          <li><a href="#">About</a></li>
+          <li><a href="/FAQ">FAQ</a></li>
+        </ul>
+      </div>
+      <div className='d-flex'>
+        <div class="vertical-line"></div>
+        <ul>
+          <li>Account</li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Signup</a></li>
+        </ul>
+      </div>
+      <div className='d-flex'>
+        <div class="vertical-line"></div>
+        <ul className='d-flex flex-column gap-1'>
+          <li>Socials</li>
+          <li><a href="#"><i className="ri-facebook-box-fill" /></a></li>
+          <li><a href="#"><i className="ri-instagram-line" /></a></li>
+        </ul>
+      </div>
     </div>
+    <hr className='text-white'></hr>
+    <div className='copyright'>
+      <p>&copy; 2024 Your Medical Record System. All rights reserved.</p>
+    </div>
+  </footer>
+</div>
   )
 }
 

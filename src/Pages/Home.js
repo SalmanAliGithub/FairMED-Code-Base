@@ -193,7 +193,8 @@ function Home() {
      </div>
     </div>
 
-    <h5 className="article">Read Articles</h5>
+    <h5 className="article">Trending Articles</h5>
+    <hr></hr>
     <article id="homearticle">
       <div className="scroll">
         <a
