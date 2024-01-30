@@ -22,9 +22,10 @@ function ViewDoctorDashboard() {
     <Sidebar />
   </div>
   <div className='view-doctor-dashboard-content'>
-   <div className='top d-flex '>
-   <div>
-    <div className='rate-header-left d-flex gap-3 p-3 doctorName'>
+  <div className="container">
+        <div className="row">
+          <div className="col-lg-6 col-md-12 mb-4 mb-md-0  d-flex align-items-center justify-content-center card">
+          <div className='rate-header-left d-flex gap-3 p-3 doctorName'>
           <img src={Placeholder} alt="Profile Picture" />
           <div>
             <h2 className="pt-4 pb-0">Doctor</h2>
@@ -47,10 +48,9 @@ function ViewDoctorDashboard() {
           </li>
         </ul>
       </div>
-    </div>
-
-    <div className='rate-review-field '>
-    <div className='rate-box'>
+          </div>
+          <div className="col-lg-6 col-md-12 bg-warning d-flex align-items-center justify-content-center card p-3">
+          <div className='rate-box'>
     <div className="row">
     <div className="col-md-6">
       <div className="card-rate">
@@ -146,14 +146,23 @@ function ViewDoctorDashboard() {
         </div>
       </div>
     </div>
+          </div>
+        </div>
+        <div className='review-box'>
+          <h3>Write review</h3>
+            <textarea></textarea>
+        </div>
+        <button className='btn btn-primary '>Submit</button>
+      </div>
+
+
+    <div className='rate-review-field '>
+ 
   </div>
-</div>
-<div className='review-box'>
-  <h3>Write review</h3>
-    <textarea></textarea>
-</div>
+
+
     </div>
-   </div>
+   </div> 
 
 
   </div>

@@ -1128,7 +1128,10 @@ h5 {
 
 /**************************************view doctor dashboard***************/
 .view-doctor-dashboard-content {
-  margin-left: 7%;
+  padding:20px ;
+  background-color: aliceblue;
+  padding-left:70px ;
+
 }
 
 .rating { 
