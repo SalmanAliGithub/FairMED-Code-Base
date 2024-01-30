@@ -15,8 +15,10 @@ import SignUp from './Components/SignUp/SignUp';
 import Login from './Components/Login/Login';
 import MyMedicalRecord from './Pages/MyMedicalRecord';
 import Support from './Pages/Support';
-
-
+import SupportDoc from './Pages/SupportDoc';
+import PdashboardDrate from './Pages/PdashboardDrate';
+import PdashboardHrate from './Pages/PdashboardHrate';
+import ViewDoctorDashboard from './Pages/ViewDoctorDashboard';
 function App() {
   
   return (
@@ -38,8 +40,13 @@ function App() {
           <Route exact path="/signup" element={<SignUp />}></Route>
           <Route exact path="/support" element={<Support />}></Route>
           <Route path='/my-medical-record' element={<MyMedicalRecord />}></Route>
+          <Route path='/support-doctor' element={<SupportDoc />}></Route>
+          <Route path='/dashboard-doctor-rate' element={<PdashboardDrate />}></Route>
+          <Route path='/dashboard-healthcare-rate' element={<PdashboardHrate />}></Route>
+          <Route path='/view-doctor-dashboard' element={<ViewDoctorDashboard />}></Route>
         </Routes>
       </BrowserRouter>
+  
   
     </div>
 

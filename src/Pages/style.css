@@ -1002,3 +1002,231 @@ h5 {
   opacity: 1;
   
 }
+/* **********************************************Update Medical Record**************************************************** */
+.update-medical-record {
+  background-color: aliceblue;
+  padding: 20px;
+}
+.update-medical-record-main{
+  margin-left:5%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+
+
+.form-container {
+  width: 400px;
+  padding: 20px;
+  
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.medical-record-name {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.medical-record-form {
+  display: grid;
+  gap: 10px;
+}
+
+.medical-record-form label {
+  font-weight: bold;
+}
+
+.medical-record-form input,
+.medical-record-form textarea,
+.medical-record-form select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.medical-record-form textarea {
+  height: 100px;
+}
+
+.medical-record-form button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.medical-record-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+.floating-container {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  bottom: 0;
+  right: 0;
+  margin: 35px 25px;
+}
+.floating-container:hover {
+  height: 300px;
+}
+.floating-container:hover .floating-button {
+  box-shadow: 0 10px 25px rgba(44, 179, 240, 0.6);
+  -webkit-transform: translatey(5px);
+          transform: translatey(5px);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.floating-container .floating-button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  background: #2cb3f0;
+  bottom: 0;
+  border-radius: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+  line-height: 65px;
+  text-align: center;
+  font-size: 23px;
+  z-index: 100;
+  box-shadow: 0 10px 25px -5px rgba(44, 179, 240, 0.6);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.floating-container .float-element {
+  position: relative;
+  display: block;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 15px auto;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  line-height: 50px;
+  z-index: 0;
+  opacity: 0;
+  -webkit-transform: translateY(100px);
+          transform: translateY(100px);
+}
+
+
+/**************************************view doctor dashboard***************/
+.rate-box{
+  margin-left: 5%;
+}
+
+.rating { 
+      border: none;
+      margin-right: 49px;
+}
+.myratings{
+
+  font-size: 85px;
+  color: green;
+}
+
+.rating > [id^="star"] { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 2.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+
+.rating > [id^="star"]:checked ~ label, 
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } 
+
+.rating > [id^="star"]:checked + label:hover, 
+.rating > [id^="star"]:checked ~ label:hover,
+.rating > label:hover ~ [id^="star"]:checked ~ label, 
+.rating > [id^="star"]:checked ~ label:hover ~ label { color: #FFED85;  }
+
+.reset-option {
+display: none;
+}
+
+.reset-button {
+margin: 6px 12px;
+background-color: rgb(255, 255, 255);
+text-transform: uppercase;
+}
+
+
+
+.mt-100 {
+     margin-top: 100px
+ }
+
+ .card-rate {
+     position: relative;
+     display: flex;
+     width: 350px;
+     flex-direction: column;
+     min-width: 0;
+     word-wrap: break-word;
+     background-color: #fff;
+ }
+
+ .card-rate .card-rate-body {
+     padding: 1rem 1rem
+ }
+
+ .card-rate-body {
+     flex: 1 1 auto;
+     padding: 1.25rem
+ }
+
+ .rate-box p {
+     font-size: 14px
+ }
+
+ .rate-box h4 {
+     margin-top: 18px
+ }
+
+ .rate-box .btn:focus {
+     outline: none
+ }
+
+ .rate-box .btn {
+     border-radius: 22px;
+     text-transform: capitalize;
+     font-size: 13px;
+     padding: 8px 19px;
+     cursor: pointer;
+     color: #fff;
+     background-color: #D50000
+ }
+
+ .rate-box .btn:hover {
+     background-color: #D32F2F !important
+ }
