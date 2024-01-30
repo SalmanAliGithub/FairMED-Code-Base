@@ -1,102 +1,24 @@
-// import React, { useState } from 'react';
-// import logo from '../Assets/logo.png';
-// import './Sidebar.css';
 
-// function LogoutConfirmationPopup({ onCancel, onLogout }) {
-//   return (
-//     <div className="popup">
-//       <p>Are you sure you want to log out?</p>
-//       <div className="popup-buttons">
-//         <button onClick={onCancel}>Cancel</button>
-//         <button onClick={onLogout}>OK</button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// function Sidebar() {
-//   const [showConfirmation, setShowConfirmation] = useState(false);
-
-//   const handleLogoutClick = () => {
-//     setShowConfirmation(true);
-//   };
-
-//   const handleCancelLogout = () => {
-//     setShowConfirmation(false);
-//   };
-
-//   const handleConfirmLogout = () => {
-//     window.location.href = '/home'; 
-//   };
-
-//   return (
-//     <div>
-//       <div className="sidebar">
-//         <header>FAIRMED</header>
-//         <ul>
-//           <li>
-//             <a href="/doctor-dashboard">
-//               <i className="fa fa-qrcode" />
-//               Dashboard
-//             </a>
-//           </li>
-//           <li>
-//             <a href="#">
-//               <i className="fa fa-hospital-o" />
-//               Update Medical Record
-//             </a>
-//           </li>
-//           <li>
-//             <a href="#">
-//               <i className="fa fa-star-o" />
-//               My Rating 
-//             </a>
-//           </li>
-//           <li>
-//             <a href="#">
-//               <i className="fa fa-comment-o" />
-//               My Reviews
-//             </a>
-//           </li>
-//           <li>
-//             <a href="#">
-//               <i className="fa fa-question-circle" />
-//               Support
-//             </a>
-//           </li>
-//         </ul>
-//         <button className="logout_button" onClick={handleLogoutClick}>
-//           Logout
-//         </button>
-//       </div>
-//       {showConfirmation && (
-//         <div className="popup-container">
-//           <LogoutConfirmationPopup
-//             onCancel={handleCancelLogout}
-//             onLogout={handleConfirmLogout}
-//           />
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Sidebar;
 import React, { useState } from 'react';
 import logo from '../Assets/logo.png';
 import './Sidebar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LogoutPopup({ onConfirm, onCancel }) {
   return (
     <div className="popup">
-      <div className="popup_content">
-        <h4>Are you sure you want to log out?</h4>
-        <div className="popup_buttons">
-          <button className="popup_button" onClick={onConfirm}>OK</button>
-          <button className="popup_button" onClick={onCancel}>Cancel</button>
-        </div>
+    <div className="popup_content">
+      <h4>Are you sure you want to log out?</h4>
+      <div className="popup_buttons">
+        <button className="btn btn-primary popup_button" onClick={onConfirm}>
+          OK
+        </button>
+        <button className="btn btn-secondary popup_button" onClick={onCancel}>
+          Cancel
+        </button>
       </div>
     </div>
+  </div>
   );
 }
 function Sidebardoc() {
@@ -154,7 +76,7 @@ function Sidebardoc() {
               </span>
             </a>
             <div className="nav_list">
-              <a href="/patient-dashboard" className="nav_link" onClick={handleLinkClick}>
+              <a href="/doctor-dashboard" className="nav_link" onClick={handleLinkClick}>
                 <i className="bx bx-grid-alt nav_icon"></i>
                 <span className="nav_name">Dashboard</span>
               </a>
@@ -162,11 +84,11 @@ function Sidebardoc() {
                 <i className="bx bx-id-card nav_icon"></i>
                 <span className="nav_name"> Update Record</span>
               </a>
-              <a href="#" className="nav_link " onClick={handleLinkClick}>
+              <a href="/rate-doctor" className="nav_link " onClick={handleLinkClick}>
                 <i className="bx bx bx-star"></i>
                 <span className="nav_name">My Ratings</span>
               </a>
-              <a href="#" className="nav_link " onClick={handleLinkClick}>
+              <a href="/review-doctor" className="nav_link " onClick={handleLinkClick}>
                 <i className="bx bx bx-star"></i>
                 <span className="nav_name">My Reviews</span>
               </a>

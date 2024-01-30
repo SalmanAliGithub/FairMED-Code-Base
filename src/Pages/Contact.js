@@ -52,6 +52,7 @@ function Contact() {
                     <div className="inner" />
                     <input type="submit" defaultValue="submit" />
                 </div>
+                <a href='/doctor-dashboard'><button>to the doctor</button></a>
                 </div>
             </div>
             </div>

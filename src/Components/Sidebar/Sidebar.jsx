@@ -79,9 +79,13 @@ function Sidebar() {
                 <i className="bx bx-id-card nav_icon"></i>
                 <span className="nav_name">Medical Record</span>
               </a>
-              <a href="/rate-review" className="nav_link " onClick={handleLinkClick}>
+              <a href="/dashboard-doctor-rate" className="nav_link " onClick={handleLinkClick}>
                 <i className="bx bx bx-star"></i>
-                <span className="nav_name">Rate and Review</span>
+                <span className="nav_name">Rate and Review Doctor</span>
+              </a>
+              <a href="/dashboard-healthcare-rate" className="nav_link " onClick={handleLinkClick}>
+              <i class='bx bx-plus-medical'></i>
+                <span className="nav_name">Rate and Review Healthcare</span>
               </a>
               <a href="/support" className="nav_link " onClick={handleLinkClick}>
                 <i className="bx bx-question-mark nav_icon"></i>

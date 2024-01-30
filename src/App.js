@@ -17,7 +17,8 @@ import MyMedicalRecord from './Pages/MyMedicalRecord';
 import Support from './Pages/Support';
 import UpdateMedicalRecord from './Pages/UpdateMedicalRecord';
 import SupportDoc from './Pages/SupportDoc';
-
+import PdashboardDrate from './Pages/PdashboardDrate';
+import PdashboardHrate from './Pages/PdashboardHrate';
 
 function App() {
   
@@ -42,6 +43,8 @@ function App() {
           <Route path='/my-medical-record' element={<MyMedicalRecord />}></Route>
           <Route path='/update-medical-record' element={<UpdateMedicalRecord />}></Route>
           <Route path='/support-doctor' element={<SupportDoc />}></Route>
+          <Route path='/dashboard-doctor-rate' element={<PdashboardDrate />}></Route>
+          <Route path='/dashboard-healthcare-rate' element={<PdashboardHrate />}></Route>
         </Routes>
       </BrowserRouter>
   
