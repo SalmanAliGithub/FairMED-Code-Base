@@ -49,7 +49,7 @@ function ViewDoctorDashboard() {
         </ul>
       </div>
           </div>
-          <div className="col-lg-6 col-md-12 bg-warning d-flex align-items-center justify-content-center card p-3">
+          <div className="col-lg-6 col-md-12 d-flex  justify-content-center card p-3">
           <div className='rate-box'>
     <div className="row">
     <div className="col-md-6">
