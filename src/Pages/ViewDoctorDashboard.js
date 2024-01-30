@@ -21,18 +21,43 @@ function ViewDoctorDashboard() {
       <div>
     <Sidebar />
   </div>
-    <div className='view-doctor-dashboard-content'>
-    <div className='main doctorName d-flex gap-3' >
-    <img src={Placeholder} alt="Profile Picture" />
-    <h2 className='pt-4 pb-'>Doctor</h2>
-  </div>
-  <div className='rate-box'>
-  <div className="row">
+  <div className='view-doctor-dashboard-content'>
+   <div className='top d-flex '>
+   <div>
+    <div className='rate-header-left d-flex gap-3 p-3 doctorName'>
+          <img src={Placeholder} alt="Profile Picture" />
+          <div>
+            <h2 className="pt-4 pb-0">Doctor</h2>
+            <p>Average Rating</p>
+          </div>
+    </div>
+      <div className="contact-info">
+        <ul className="list-unstyled">
+          <li>
+            <strong>Name:</strong> John Doe
+          </li>
+          <li>
+            <strong>Telephone:</strong> 123-456-7890
+          </li>
+          <li>
+            <strong>Email:</strong> JohonDoe@email.com
+          </li>
+          <li>
+            <strong>Lisence:</strong> 
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div className='rate-review-field '>
+    <div className='rate-box'>
+    <div className="row">
     <div className="col-md-6">
       <div className="card-rate">
-        <div className="card-rate-body text-center">
-        <h1>4.5</h1> 
-
+        <div className="card-rate-body ">
+          
+          <h3>Rate this doctor</h3>
+          <h6>Tell others what you think </h6>
           <fieldset className="rating">
             <input type="radio" id="star5" name="rating" defaultValue={5} />
             <label className="full" htmlFor="star5" title="Awesome - 5 stars" />
@@ -123,6 +148,13 @@ function ViewDoctorDashboard() {
     </div>
   </div>
 </div>
+<div className='review-box'>
+  <h3>Write review</h3>
+    <textarea></textarea>
+</div>
+    </div>
+   </div>
+
 
   </div>
   <div className='text-center theReview'>
