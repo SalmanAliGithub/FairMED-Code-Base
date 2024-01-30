@@ -15,6 +15,8 @@ import SignUp from './Components/SignUp/SignUp';
 import Login from './Components/Login/Login';
 import MyMedicalRecord from './Pages/MyMedicalRecord';
 import Support from './Pages/Support';
+import UpdateMedicalRecord from './Pages/UpdateMedicalRecord';
+import SupportDoc from './Pages/SupportDoc';
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
           <Route exact path="/signup" element={<SignUp />}></Route>
           <Route exact path="/support" element={<Support />}></Route>
           <Route path='/my-medical-record' element={<MyMedicalRecord />}></Route>
+          <Route path='/update-medical-record' element={<UpdateMedicalRecord />}></Route>
+          <Route path='/support-doctor' element={<SupportDoc />}></Route>
         </Routes>
       </BrowserRouter>
   
