@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom/dist';
 
 function Login() {
   const [isUsingEmail, setIsUsingEmail] = useState(true);
-  const [activeButton, setActiveButton] = useState('patient');
+  const [activeButton, setActiveButton] = useState('');
   const log_url = `http://127.0.0.1:8000/login/${activeButton}/`
   const [isDoctor, setIsDoctor] = useState(false);
   const navigate = useNavigate()
+
+  console.log(activeButton)
 
 
   const [formData, setFormData] = useState({
@@ -43,7 +45,7 @@ function Login() {
   const handleSubmit = async () => {
     loginUser()
     await new Promise(resolve => setTimeout(resolve, 2000));
-    navigate('/patient-dashboard')
+    navigate(`/${activeButton}-dashboard`)
   }
 
 
@@ -94,6 +96,7 @@ function Login() {
                           <input
                             type="email"
                             name ="email"
+                            disabled= {activeButton ? false : true}
                             className="form-control"
                             id="floatingInput"
                             onChange={handleChange}
@@ -103,6 +106,7 @@ function Login() {
                           <input
                             type="tel"
                             name='phone'
+                            disabled= {activeButton ? false : true}
                             className="form-control"
                             id="floatingInput"
                             placeholder="Phone number"
@@ -117,6 +121,7 @@ function Login() {
                         <input
                           type="password"
                           name='password'
+                          disabled= {activeButton ? false : true}
                           className="form-control"
                           id="floatingPassword"
                           placeholder="Password"
@@ -126,6 +131,7 @@ function Login() {
                       </div>
                       <div className="d-grid">
                       <button
+                        disabled= {activeButton ? false : true}
                         className="btn btn-lg btn-primary btn-signup text-uppercase fw-bold mb-2"
                         type="submit"
                       >
