@@ -1,0 +1,59 @@
+footer{
+    padding: 10px 10%;
+    margin-top: auto;
+    background-color:#00274F;
+    display: flex;
+    flex-wrap: wrap;
+    
+  }
+  
+  footer ul li {
+    list-style: none;
+    padding: 5px;
+  
+  }
+  
+  footer a{
+    color: aliceblue;
+  }
+  
+  footer h3{
+    color: rgb(207, 255, 48);
+    margin-bottom: 5px;
+  }
+  .footer-nav , .socilas {
+    width: 50%;
+  }
+  
+  footer i {
+    padding: 10px;
+    color: #00274F;
+    background-color: aliceblue;
+    text-decoration:none;
+    border-radius: 50%;
+  }
+.card {
+    background-color:#00274F;
+    border-radius: 10px;
+}
+
+.card .fa{
+    color: #d9d5d5;
+}
+
+#inp1{
+    background-color:aliceblue;
+    border: 1px solid #636161;
+    font-size: 0.75rem;
+}
+
+#inp1:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+
+
+
+
+ 
