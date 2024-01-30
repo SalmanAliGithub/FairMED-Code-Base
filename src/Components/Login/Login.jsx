@@ -1,12 +1,71 @@
 import React, { useState } from 'react';
 import '../../Pages/style.css';
+import { useNavigate } from 'react-router-dom/dist';
 
 function Login() {
   const [isUsingEmail, setIsUsingEmail] = useState(true);
+  const [activeButton, setActiveButton] = useState('patient');
+  const log_url = `http://127.0.0.1:8000/login/${activeButton}/`
+  const [isDoctor, setIsDoctor] = useState(false);
+  const navigate = useNavigate()
+
+
+  const [formData, setFormData] = useState({
+    email: '',
+    phone: '',
+    password: '',
+  });
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+  
 
   const handleToggleInput = () => {
     setIsUsingEmail(!isUsingEmail);
   };
+
+  const handleDoctorClick = () => {
+    setIsDoctor(true);
+    setActiveButton('physician');
+  };
+
+  const handlePatientClick = () => {
+      setIsDoctor(false);
+      setActiveButton('patient');
+    };
+
+  const handleSubmit = async () => {
+    loginUser()
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    navigate('/patient-dashboard')
+  }
+
+
+  const loginUser = async () => {
+    const response = await fetch(log_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json()
+
+    
+      localStorage.setItem('access_token',data['token'])
+      localStorage.setItem('id', data['id'])
+  }
+
+
 
   return (
     <div>
@@ -17,23 +76,37 @@ function Login() {
             <div className="login d-flex align-items-center py-5">
               <div className=" container">
                 <div className="row">
+                  <div>{}</div>
                   <div className="col-md-9 col-lg-8 mx-auto">
                     <h3 className="login-heading mb-4 text-white">Welcome back!</h3>
-                    <form>
+                    <h3 className="signup-heading mb-4 text-white">Login as</h3>
+                  <div className="mb-4 d-flex gap-2">
+                    <button className={`btn btn-lg btn-primary btn-login text-uppercase fw-bold ${activeButton === 'patient' ? 'active' : ''}`} type="button" onClick={handlePatientClick}>
+                    Patient
+                    </button>
+                    <button className={`btn btn-lg btn-primary btn-login text-uppercase fw-bold ${activeButton === 'physician' ? 'active' : ''}`} type="button"  onClick={handleDoctorClick}>
+                    Doctor
+                    </button>
+                  </div>
+                    <form id='log-form' onSubmit={handleSubmit}>
                       <div className="form-floating mb-3">
                         {isUsingEmail ? (
                           <input
                             type="email"
+                            name ="email"
                             className="form-control"
                             id="floatingInput"
+                            onChange={handleChange}
                             placeholder="name@example.com"
                           />
                         ) : (
                           <input
                             type="tel"
+                            name='phone'
                             className="form-control"
                             id="floatingInput"
                             placeholder="Phone number"
+                            onChange={handleChange}
                           />
                         )}
                         <label htmlFor="floatingInput">
@@ -43,16 +116,21 @@ function Login() {
                       <div className="form-floating mb-3">
                         <input
                           type="password"
+                          name='password'
                           className="form-control"
                           id="floatingPassword"
                           placeholder="Password"
+                          onChange={handleChange}
                         />
                         <label htmlFor="floatingPassword">Password</label>
                       </div>
                       <div className="d-grid">
-                        <a className="btn btn-lg btn-success btn-login text-uppercase fw-bold mb-2" href='/patient-dashboard'>
-                          Log In
-                        </a>
+                      <button
+                        className="btn btn-lg btn-primary btn-signup text-uppercase fw-bold mb-2"
+                        type="submit"
+                      >
+                        Login
+                      </button>
                         <div className="text-center">
                           <a
                             className="small text-white"

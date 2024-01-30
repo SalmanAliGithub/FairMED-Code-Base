@@ -1,12 +1,16 @@
 import React from 'react';
 import '../../Pages/style.css';
 import {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 function SignUp() {
     const [usePhoneNumber, setUsePhoneNumber] = useState(false);
     const [emailOrPhoneNumber, setEmailOrPhoneNumber] = useState('');
     const [activeButton, setActiveButton] = useState('patient');
+    const navigate = useNavigate()
+
+    const reg_url = `http://127.0.0.1:8000/register/${activeButton}/`
+    const log_url = `http://127.0.0.1:8000/login/${activeButton}/`
 
     const handleUsePhoneNumberClick = () => {
         setUsePhoneNumber(true);
@@ -35,7 +39,7 @@ function SignUp() {
         email: '',
         phoneNumber: '',
         password: '',
-        confirmPassword: '',
+        password2: '',
         uploadFile:''
       });
       
@@ -49,7 +53,7 @@ function SignUp() {
         });
       };
       
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = {};
       
@@ -87,7 +91,7 @@ function SignUp() {
           validationErrors.password = 'Password should be at least 8 characters';
         }
       
-        if (formData.confirmPassword !== formData.password) {
+        if (formData.password2 !== formData.password) {
           validationErrors.confirmPassword = 'Passwords do not match';
         }
         if (!formData.uploadFile) {
@@ -95,8 +99,53 @@ function SignUp() {
         }
       
         setErrors(validationErrors);
+        const res = await sendData(regFormData)
+        if (res){
+          const response = {
+            'email': await res.email,
+            'password': await res.password
+          }
+          console.log(localStorage.getItem('access_token'))
+        await loginUser(response, localStorage.getItem('access_token'))
+      }
+        navigate('/patient-dashboard')
       };
+
+  const sendData = async (formData) => {
+    const response = await fetch(reg_url, {
+      method: 'POST',
+      body: formData
+    })
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    
+    return data['data']
+  }
+
+  const loginUser = async (formData, token) => {
+    const response =await fetch(log_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(formData)
+    })
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+    
+      localStorage.setItem('access_token',data['token'])
+      localStorage.setItem('id', data['id'])
+  }
   
+  
+  const form = document.getElementById("regForm")
+  
+  const regFormData = form ? new FormData(form): null
 
   return (
     <div className="container-fluid ps-md-0">
@@ -116,7 +165,7 @@ function SignUp() {
                     Doctor
                     </button>
                   </div>
-                  <form onSubmit={handleSubmit}>
+                  <form id="regForm" onSubmit={handleSubmit}>
                   <div className="row">
                     <div className="col">
                     <div className="form-floating mb-3">
@@ -214,7 +263,7 @@ function SignUp() {
                     <div className="form-floating mb-3">
                       <input
                         type="password"
-                        name="confirmPassword"
+                        name="password2"
                         className="form-control"
                         id="floatingPassword"
                         placeholder="Password"

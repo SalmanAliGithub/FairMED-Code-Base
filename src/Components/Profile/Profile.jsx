@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Profile.css';
 import Placeholder from '../Assets/placeholder.png';
 import { useState } from 'react';
@@ -9,10 +9,47 @@ const Profile = () => {
   const ProfileSection = () => {
     const [isBordered, setIsBordered] = useState(false);
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [name, setName] = useState('John Doe');
-    const [email, setEmail] = useState('johndoe@example.com');
-    const [phone, setPhone] = useState('123-456-7890');
-    const [password, setPassword] = useState('12345678');
+    const [user, setUser] = useState({
+      name: '',
+      email: '',
+      phone: '',
+      password: ''
+    })
+    
+
+    const [data, setData] = useState({});
+  const id = localStorage.getItem("id");
+  const token = localStorage.getItem("access_token");
+  const url = `http://127.0.0.1:8000/patient_profile/${id}/`;
+
+  useEffect(()=>{
+
+    const fetchData = async () => {
+      const res = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      } else {
+        const data = await res.json();
+        setData({ ...data, 'userData':data });
+      }
+    };
+
+    fetchData()
+  }, [token, url])
+    console.log(data);
+  useEffect(() => {
+    setUser({
+      name: data['name'],
+      email: data['email'],
+      phone: data['phone']
+    })
+  }, [data]);
   
     const toggleEditability = () => {
       setIsBordered((prevState) => !prevState);
@@ -23,30 +60,16 @@ const Profile = () => {
       setPasswordVisible((prevVisible) => !prevVisible);
     };
   
-    const handleNameChange = (e) => {
-      setName(e.target.value);
-    };
-  
-    const handleEmailChange = (e) => {
-      setEmail(e.target.value);
-    };
-  
-    const handlePhoneChange = (e) => {
-      setPhone(e.target.value);
-    };
-  
-    const handlePasswordChange = (e) => {
-      setPassword(e.target.value);
+    const handleChange = (e) => {
+      const {name, value} = e.target
+      setUser({ 
+        ...user, 
+        [name]: value});
     };
   
     const saveChanges = () => {
 
-      console.log('Changes saved:', {
-        name,
-        email,
-        phone,
-        password
-      });
+      console.log('Changes saved:');
   
 
       setIsBordered(false);
@@ -57,27 +80,27 @@ const Profile = () => {
         <div className='p-4'>
         <label htmlFor="name" className='lable-label text-primary'>Name</label><br />
         {isBordered ? (
-          <input type="text" value={name} onChange={handleNameChange} className="form-control" />
+          <input type="text" value={user.name} onChange={handleChange} className="form-control" />
         ) : (
-          <span id="name">{name}</span>
+          <span id="name">{user.name}</span>
         )}
         <br />
         <br />
   
         <label htmlFor="email" className='text-primary'>Email</label><br />
         {isBordered ? (
-          <input type="text" value={email} onChange={handleEmailChange} className="form-control" />
+          <input type="text" value={user.email} onChange={handleChange} className="form-control" />
         ) : (
-          <span id="email">{email}</span>
+          <span id="email">{user.email}</span>
         )}
         <br />
         <br />
   
         <label htmlFor="phone" className='text-primary'>Phone Number</label><br />
         {isBordered ? (
-          <input type="text" value={phone} onChange={handlePhoneChange} className="form-control" />
+          <input type="text" value={user.phone} onChange={handleChange} className="form-control" />
         ) : (
-          <span id="phone">{phone}</span>
+          <span id="phone">{user.phone}</span>
         )}
         <br />
         <br />
@@ -86,12 +109,12 @@ const Profile = () => {
         {isBordered ? (
           <input
             type={passwordVisible ? 'text' : 'password'}
-            value={password}
-            onChange={handlePasswordChange}
+            value={user.password}
+            onChange={handleChange}
             className="form-control"
           />
         ) : (
-          <span id="password">{password}</span>
+          <span id="password">{user.password}</span>
         )}
         <i
           className={`bx ${passwordVisible ? 'bx-lock-open-alt' : 'bx-lock-alt'}`}
@@ -138,7 +161,7 @@ const Profile = () => {
         alt="..."
       />
       <h4 className="title">
-        Jhone Doe
+        John Doe
       </h4>
     </div>
     <div className='text-center'>

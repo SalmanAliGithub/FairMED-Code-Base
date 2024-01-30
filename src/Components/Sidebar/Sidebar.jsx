@@ -22,6 +22,11 @@ function Sidebar() {
     setIsNavOpen(false);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('id')
+  }
+
   return (
     <div className='sidebar'>
       <header className="header-sidebar" id="header">
@@ -59,7 +64,7 @@ function Sidebar() {
               </a>
             </div>
           </div>
-          <a href="#" className="nav_link" onClick={handleLinkClick}>
+          <a href="/" className="nav_link" onClick={handleLogout}>
             <i className="bx bx-log-out nav_icon text-danger"></i>
             <span className="nav_name text-danger ">Log Out</span>
           </a>
