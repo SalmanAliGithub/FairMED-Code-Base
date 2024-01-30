@@ -2,6 +2,7 @@ import serial
 from vpython import *
 import time
 import requests
+
 # ------------------------server-----------------------------
 import socket
 
@@ -34,14 +35,17 @@ def run_server():
 run_server()
 # ------------------------server-----------------------------
 
+
 arduinoData = serial.Serial('com12', 115200)
 time.sleep(1)
 
 #send command to arduino
+endPoint = "http://10.6.156.26:8000/login/api/token/"
+
 while True:
     # Sending data from py to arduino
     if recievedCmd == "scanUser": #string that is gonna be recieved for the backend when requesting user Id by scanning finger
-        recievedCmd = recievedCmd +'\r'
+        recievedCmd = recievedCmd +'\n'
         arduinoData.write(recievedCmd.encode())
 
         while (arduinoData.inWaiting()==0):
@@ -51,12 +55,11 @@ while True:
         data = data.strip('\r\n')
         print(data)
 
-        endPoint = "http://10.6.156.26:8000/login/api/token/"
         request = requests.post(endPoint, json={"data":data})
 
 
     elif recievedCmd == "register":
-        recievedCmd = recievedCmd + '\r'
+        recievedCmd = recievedCmd + '\n'
         arduinoData.write(recievedCmd.encode()) #informed arduino to register
         # wait a little and send the 'id'
         
