@@ -29,10 +29,6 @@ function HealthcareRating() {
 
   console.log(fetchedData);
 
-  const identifyUser = async (event) => {
-    localStorage.setItem("profileId", event.name);
-  };
-
   const Card = ({ user }) => (
     <section className="container d-flex p-4 gap-5 healthcareProfile-container">
       <div>
@@ -51,11 +47,12 @@ function HealthcareRating() {
         <div>
           <button
             type="button"
-            onClick={identifyUser}
-            name={user.id}
             class="btn btn-danger  btn-lg mt-3 w-100 rounded"
           >
-            <a className="text-decoration-none text-black" href="#">
+            <a
+              className="text-decoration-none text-black"
+              href={`/view-hc/${user.id}/`}
+            >
               View Profile
             </a>
           </button>
