@@ -73,11 +73,12 @@ void loop()                     // run over and over again
 
 // Read data from arduino
 String receivedCmd;
-// receivedCmd = Serial.readStringUntil('\r');
-receivedCmd = Serial.readStringUntil('\n');
+receivedCmd = Serial.readStringUntil('\r');
+// receivedCmd = Serial.readStringUntil('\n');
 Serial.println(receivedCmd);
 // scan user and send the id to bakcend
 if (receivedCmd == "scanUser") {
+  Serial.println("Recieved the cmd and ready to scan and verifys");
   while (true){
     getFingerprintID();
     delay(50);            //don't need to run this at full speed.
@@ -105,6 +106,7 @@ else if (receivedCmd == "register") {
     // Checking
     receivedCmd = Serial.readStringUntil('\n');
     if (receivedCmd == "Done") {
+      receivedCmd = "Null";
       break;
     }
     while (!  getFingerprintEnroll() );
@@ -176,17 +178,23 @@ uint8_t getFingerprintEnroll() {
   Serial.println("Place same finger again");
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
-    if (p == FINGERPRINT_OK) {
-  Serial.println("Image taken");
-} else if (p == FINGERPRINT_NOFINGER) {
-  Serial.println("No finger detected");
-  return p;
-} else {
-    Serial.println("Finger detection Error");
-    return p;
-  }
-
-
+    switch (p) {
+    case FINGERPRINT_OK:
+      Serial.println("Image taken");
+      break;
+    case FINGERPRINT_NOFINGER:
+      Serial.print(".");
+      break;
+    case FINGERPRINT_PACKETRECIEVEERR:
+      Serial.println("Communication error");
+      break;
+    case FINGERPRINT_IMAGEFAIL:
+      Serial.println("Imaging error");
+      break;
+    default:
+      Serial.println("Unknown error");
+      break;
+    }
   }
 
   // OK success!
