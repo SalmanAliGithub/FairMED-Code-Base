@@ -4,35 +4,61 @@ import time
 import requests
 
 # ------------------------server-----------------------------
-# import socket
+import socket
+import json
 
-# # Define the IP address and port to bind the server
-# HOST = '0.0.0.0'  # Replace with the desired IP address
-# PORT = 8080  # Replace with the desired port number
+# Define the IP address and port to bind the server
+HOST = '0.0.0.0'  # Replace with the desired IP address
+PORT = 8080  # Replace with the desired port number
+recievedCmd = ""
 
-# def run_server():
-#     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
-#         # Bind the server socket to the specified IP address and port
-#         server_socket.bind((HOST, PORT))
+def run_server():
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
+        server_socket.bind((HOST, PORT))
+        server_socket.listen()
 
-#         # Listen for incoming connections
-#         server_socket.listen()
+        print(f"Server running on {HOST}:{PORT}")
 
-#         print(f"Server running on {HOST}:{PORT}")
+        while True:  # Continuously accept connections
+            client_socket, client_address = server_socket.accept()
+            print(f"Connection from {client_address}")
 
-#         # Accept incoming connections
-#         client_socket, client_address = server_socket.accept()
-#         print(f"Connection from {client_address}")
+            data = client_socket.recv(1024)
+            if not data:
+                break  # If no data received, break the loop
 
-#         # Receive data from the client
-#         data = client_socket.recv(1024)
-#         print(f"Received data: {data.decode('utf-8')}")
+            received_data = data.decode('utf-8')
+            print(f"Received data: {received_data}")
 
-#         # Close the client socket
-#         client_socket.close()
+            # Assuming the received data is in JSON format
+            try:
+                # Parse the JSON data
+                json_data = json.loads(received_data)
 
-# # Run the server
-# run_server()
+                # Access specific fields
+                recievedCmd = json_data.get("recievedCmd", "NoCmd")
+
+
+                # Convert the modified data back to a JSON string
+                # modified_data_str = json.dumps(modified_data)
+
+                # response = f"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n"
+                # response += f'{{"message": "Data received and modified successfully!", "field_value": "{field_value}"}}'
+
+                # Send the response back to the client
+                # client_socket.sendall(response.encode('utf-8'))
+
+            except json.JSONDecodeError as e:
+                # Handle the case where the received data is not a valid JSON
+                print(f"Error decoding JSON: {e}")
+                response = "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\nInvalid JSON format"
+                client_socket.sendall(response.encode('utf-8'))
+
+            # Close the client socket after sending the response
+            client_socket.close()
+
+# Run the server
+run_server()
 # ------------------------server-----------------------------
 
 
