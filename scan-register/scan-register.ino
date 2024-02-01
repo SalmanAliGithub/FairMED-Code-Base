@@ -2,7 +2,6 @@
 
 #include <Adafruit_Fingerprint.h>
 
-
 #if (defined(__AVR__) || defined(ESP8266)) && !defined(__AVR_ATmega2560__)
 // For UNO and others without hardware serial, we must use software serial...
 // pin #2 is IN from sensor (GREEN wire)
@@ -16,7 +15,7 @@ SoftwareSerial mySerial(2, 3);
 #define mySerial Serial1
 
 #endif
-
+bool out= false;
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
@@ -68,7 +67,6 @@ uint8_t readnumber(void) {
 void loop()                     // run over and over again
 {
   while (Serial.available()==0){
-
   }
 
 // Read data from arduino
@@ -95,7 +93,8 @@ if (receivedCmd == "scanUser") {
 
 // scan user and register it
 else if (receivedCmd == "register") {
-  Serial.println("Ready to enroll a fingerprint!");
+  out = false;
+  Serial.println("ReadyToEnrol");
   while (true) {
     id = readnumber();
     if (id == 0) {// ID #0 not allowed, try again!
@@ -104,12 +103,12 @@ else if (receivedCmd == "register") {
     Serial.print("Enrolling ID #");
     Serial.println(id);
     // Checking
-    receivedCmd = Serial.readStringUntil('\r');
-    if (receivedCmd == "Done") {
-      receivedCmd = "Null";
+    // receivedCmd = Serial.readStringUntil('\r');
+    while (!  getFingerprintEnroll() );
+    if (out == true) {
+      Serial.println("outed of the loop!");
       break;
     }
-    while (!  getFingerprintEnroll() );
   }
   
 }
@@ -216,6 +215,7 @@ uint8_t getFingerprintEnroll() {
 } else {
   // Serial.println("Image convertion Error");
   Serial.println("Error");
+  out = true;
 }
 
 
@@ -228,6 +228,7 @@ uint8_t getFingerprintEnroll() {
   } else {
     // Serial.println("Finger print match Error.");
     Serial.println("Error");
+    out = true;
     return p;
   }
 
@@ -235,8 +236,11 @@ uint8_t getFingerprintEnroll() {
   p = finger.storeModel(id);
   if (p == FINGERPRINT_OK) {
     Serial.println("Stored!");
+    out = true;
+    return "Stored!";
   } else {
     // Serial.println("Error, Not saved");
+    out = true;
     Serial.println("Error");
   }
 
