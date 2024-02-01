@@ -41,31 +41,73 @@ time.sleep(1)
 
 #send command to arduino
 endPoint = "http://10.6.156.26:8000/login/api/token/"
-recievedCmd = "scanUser"
+
+terminate = "Done"
+terminate = terminate + '\r'
 
 while True:
     # time.sleep(5)
+# Take the data from backend and saveit to 'revievedCmd' here
+    recievedCmd = input("Enter command: ")
+
     # Sending data from py to arduino
     if recievedCmd == "scanUser": #string that is gonna be recieved for the backend when requesting user Id by scanning finger
         print("Recieved: " + recievedCmd)
         recievedCmd = recievedCmd +'\r'
         arduinoData.write(recievedCmd.encode())
 
-        while (arduinoData.inWaiting()==0):
-            pass
-        data = arduinoData.readline()
-        data = str(data,'utf-8')
-        data = data.strip('\r\n')
-        print(data)
+        while True:
+            isNum = False
+            while (arduinoData.inWaiting()==0):
+                pass
+            data = arduinoData.readline()
+            data = str(data,'utf-8')
+            data = data.strip('\r\n')
+            print(data)
+            
+            try:
+                val = int(data)
+                isNum = True
+            except:
+                isNum = False
+
+            if (isNum == True) or (data == "NoMatch"):
+                isNum = False
+                arduinoData.write(terminate.encode())
+                break
+        
+
+
 
         # request = requests.post(endPoint, json={"data":data})
 
+# 'receivedCmd is separated to command and id
+# command saved in the same variable name and id saved in a variable name id.
+# You may do this above operation at the beginning of the above main loop
+# that may make things applicable for both conditions above and below
+    id="120"
 
-    elif recievedCmd == "register":
-        recievedCmd = recievedCmd + '\n'
+    if recievedCmd == "register":
+        count = 0
+        print("Recieved: " + recievedCmd)
+        recievedCmd = recievedCmd + '\r'
         arduinoData.write(recievedCmd.encode()) #informed arduino to register
         # wait a little and send the 'id'
-        
+        while True:
+            count +=1
+            print(count, end=" ")
+            while (arduinoData.inWaiting()==0):
+                    pass
+            data = arduinoData.readline()
+            data = str(data,'utf-8')
+            data = data.strip('\r\n')
+            print(data)
+
+            if(data == "Ready to enroll a fingerprint!"):
+                arduinoData.write(id.encode())
+            if (data == "Stored!") or (count == 1000) or (data == "Error"):
+                arduinoData.write(terminate.encode())
+                break
 
 
     # else: 
