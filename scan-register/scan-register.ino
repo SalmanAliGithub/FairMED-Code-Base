@@ -84,7 +84,7 @@ if (receivedCmd == "scanUser") {
     delay(50);            //don't need to run this at full speed.
 
   // Checking
-    receivedCmd = Serial.readStringUntil('\n');
+    receivedCmd = Serial.readStringUntil('\r');
     if (receivedCmd == "Done") {
       break;
     }
@@ -104,7 +104,7 @@ else if (receivedCmd == "register") {
     Serial.print("Enrolling ID #");
     Serial.println(id);
     // Checking
-    receivedCmd = Serial.readStringUntil('\n');
+    receivedCmd = Serial.readStringUntil('\r');
     if (receivedCmd == "Done") {
       receivedCmd = "Null";
       break;
@@ -132,13 +132,16 @@ uint8_t getFingerprintEnroll() {
       Serial.print(".");
       break;
     case FINGERPRINT_PACKETRECIEVEERR:
-      Serial.println("Communication error");
+      // Serial.println("Communication error");
+      Serial.println("Error");
       break;
     case FINGERPRINT_IMAGEFAIL:
-      Serial.println("Imaging error");
+      // Serial.println("Imaging error");
+      Serial.println("Error");
       break;
     default:
-      Serial.println("Unknown error");
+      // Serial.println("Unknown error");
+      Serial.println("Error");
       break;
     }
   }
@@ -151,19 +154,24 @@ uint8_t getFingerprintEnroll() {
       Serial.println("Image converted");
       break;
     case FINGERPRINT_IMAGEMESS:
-      Serial.println("Image too messy");
+      // Serial.println("Image too messy");
+      Serial.println("Error");
       return p;
     case FINGERPRINT_PACKETRECIEVEERR:
-      Serial.println("Communication error");
+      // Serial.println("Communication error");
+      Serial.println("Error");
       return p;
     case FINGERPRINT_FEATUREFAIL:
-      Serial.println("Could not find fingerprint features");
+      // Serial.println("Could not find fingerprint features");
+      Serial.println("Error");
       return p;
     case FINGERPRINT_INVALIDIMAGE:
-      Serial.println("Could not find fingerprint features");
+      // Serial.println("Could not find fingerprint features");
+      Serial.println("Error");
       return p;
     default:
-      Serial.println("Unknown error");
+      // Serial.println("Unknown error");
+      Serial.println("Error");
       return p;
   }
 
@@ -186,13 +194,16 @@ uint8_t getFingerprintEnroll() {
       Serial.print(".");
       break;
     case FINGERPRINT_PACKETRECIEVEERR:
-      Serial.println("Communication error");
+      // Serial.println("Communication error");
+      Serial.println("Error");
       break;
     case FINGERPRINT_IMAGEFAIL:
-      Serial.println("Imaging error");
+      // Serial.println("Imaging error");
+      Serial.println("Error");
       break;
     default:
-      Serial.println("Unknown error");
+      // Serial.println("Unknown error");
+      Serial.println("Error");
       break;
     }
   }
@@ -203,7 +214,8 @@ uint8_t getFingerprintEnroll() {
   if (p == FINGERPRINT_OK) {
   Serial.println("Image converted");
 } else {
-  Serial.println("Image convertion Error");
+  // Serial.println("Image convertion Error");
+  Serial.println("Error");
 }
 
 
@@ -214,7 +226,8 @@ uint8_t getFingerprintEnroll() {
   if (p == FINGERPRINT_OK) {
     Serial.println("Prints matched!");
   } else {
-    Serial.println("Finger print match Error.");
+    // Serial.println("Finger print match Error.");
+    Serial.println("Error");
     return p;
   }
 
@@ -223,7 +236,8 @@ uint8_t getFingerprintEnroll() {
   if (p == FINGERPRINT_OK) {
     Serial.println("Stored!");
   } else {
-    Serial.println("Error, Not saved");
+    // Serial.println("Error, Not saved");
+    Serial.println("Error");
   }
 
   return true;
@@ -233,6 +247,7 @@ uint8_t getFingerprintEnroll() {
 
 // -----------------------------------Scan methods-----------------------------------------
 uint8_t getFingerprintID() {
+  // Serial.println("Scanning methods running");
   uint8_t p = finger.getImage();
   switch (p) {
     case FINGERPRINT_OK:
@@ -293,7 +308,7 @@ uint8_t getFingerprintID() {
 
   // found a match!
   // Serial.print("Found ID #"); 
-  Serial.print(finger.fingerID);
+  Serial.println(finger.fingerID);
   // Serial.print(" with confidence of "); Serial.println(finger.confidence);
 
   return finger.fingerID;
